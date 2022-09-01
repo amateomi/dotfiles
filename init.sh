@@ -25,9 +25,13 @@ sudo dnf install akmod-nvidia
 sudo systemctl enable nvidia-hibernate.service nvidia-suspend.service nvidia-resume.service
 sudo sed -i 's/nvidia-drm.modeset=1/nvidia-drm.modeset=0/' /etc/default/grub
 sudo grub2-mkconfig -o /etc/grub2.cfg
+sudo sed -i 's@RUN+="/usr/libexec/gdm-runtime-config set daemon WaylandEnable false"@#&@' /lib/udev/rules.d/61-gdm.rules
+
+# Turn off beap sound
+dconf write /org/gnome/desktop/sound/event-sounds "false"
 
 # Install packages
-sudo dnf install wl-clipboard neofetch htop alacritty zsh cmake ninja-build gcc g++ gnome-tweaks telegram discord
+sudo dnf install wl-clipboard neofetch htop alacritty tldr tmux bat zsh cmake ninja-build gcc g++ gnome-tweaks telegram discord
 flatpak install flathub com.mattjakeman.ExtensionManager
 
 # Git
