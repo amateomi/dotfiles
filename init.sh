@@ -59,14 +59,16 @@ ssh-keygen -t ed25519 -C "$mail"
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
 wl-copy < ~/.ssh/id_ed25519.pub
-echo "Add SSH public key to GitHub (it's already in the clipboard)"
+echo -e "\033[32mAdd SSH public key to GitHub (it's already in the clipboard)\033[39m"
+read -p "$*"  # Pause
 
 # Generate GPG key for GitHub
 # Based on https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key
 gpg --full-generate-key
 gpg_id="$(gpg --list-secret-keys --keyid-format=long | grep -o "ed25519/.[A-Z0-9]* " | cut -d "/" -f2)"
 gpg --armor --export "$gpg_id" | wl-copy
-echo "Add GPG public key to GitHub (it's already in the clipboard)"
+echo "\033[32mAdd GPG public key to GitHub (it's already in the clipboard)\033[39m"
+read -p "$*"  # Pause
 git config --global user.signingkey "$gpg_id"
 git config --global commit.gpgsign true
 
