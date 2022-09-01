@@ -21,7 +21,7 @@ sudo dnf install snapd
 sudo ln -s /var/lib/snapd/snap /snap
 
 # Install packages
-sudo dnf install wl-clipboard neofetch htop alacritty zsh cmake ninja-build gnome-tweaks telegram discord
+sudo dnf install wl-clipboard neofetch htop alacritty zsh cmake ninja-build gcc g++ gnome-tweaks telegram discord
 flatpak install flathub com.mattjakeman.ExtensionManager
 sudo snap install clion --classic
 
