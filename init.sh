@@ -25,7 +25,7 @@ sudo dnf install wl-clipboard neofetch htop alacritty zsh cmake ninja-build gnom
 flatpak install flathub com.mattjakeman.ExtensionManager
 sudo snap install clion --classic
 
-# Setup Git config
+# Git
 # Based on https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
 read -rp "Enter your full name for Git: " git_name
 git config --global user.name "$git_name"
@@ -54,3 +54,13 @@ gpg --armor --export "$gpg_id" | wl-copy
 echo "Add GPG public key to GitHub (it's already in the clipboard)"
 git config --global user.signingkey "$gpg_id"
 git config --global commit.gpgsign true
+
+# Zsh
+
+# Alacritty
+
+# Settings
+
+# GNOME Tweaks
+
+# Extensions
