@@ -30,6 +30,10 @@ sudo sed -i 's@RUN+="/usr/libexec/gdm-runtime-config set daemon WaylandEnable fa
 # Turn off beap sound
 dconf write /org/gnome/desktop/sound/event-sounds "false"
 
+# Fix Varmilo keyboard F keys
+sudo echo "options hid_apple fnmode=2" > /etc/modprobe.d/hid_apple.conf
+sudo dracut --regenerate-all --force
+
 # Install packages
 sudo dnf install wl-clipboard neofetch htop alacritty tldr tmux bat zsh cmake ninja-build gcc g++ gnome-tweaks telegram discord
 flatpak install flathub com.mattjakeman.ExtensionManager
