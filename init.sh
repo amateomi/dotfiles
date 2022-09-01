@@ -6,12 +6,12 @@ sudo echo -e "fastestmirror=True\nmax_parallel_downloads=10\ndefaultyes=True\nke
 sudo dnf autoremove
 sudo dnf clean all
 
-# Update System
-sudo dnf upgrade --refresh
-
 # Enable RPM Fusion
 sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
                  https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+# Update System
+sudo dnf upgrade --refresh
 
 # Enable Flatpak
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
