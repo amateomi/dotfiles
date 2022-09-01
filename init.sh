@@ -1,11 +1,29 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Speed up dnf (Fedora only)
+sudo echo -e "fastestmirror=True\nmax_parallel_downloads=10\ndefaultyes=True\nkeepcache=True" | sudo tee -a /etc/dnf/dnf.conf
+sudo dnf autoremove
+sudo dnf clean all
+
 # Update System
-sudo dnf upgrade
+sudo dnf upgrade --refresh
+
+# Enable RPM Fusion
+sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
+                 https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+# Enable Flatpak
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+# Enable Snap
+sudo dnf install snapd
+sudo ln -s /var/lib/snapd/snap /snap
 
 # Install packages
-sudo dnf install wl-clipboard
+sudo dnf install wl-clipboard neofetch htop alacritty zsh cmake ninja-build gnome-tweaks telegram discord
+flatpak install flathub com.mattjakeman.ExtensionManager
+sudo snap install clion --classic
 
 # Setup Git config
 # Based on https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
