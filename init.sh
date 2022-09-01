@@ -37,6 +37,8 @@ sudo dracut --regenerate-all --force
 # Install packages
 sudo dnf install wl-clipboard neofetch htop alacritty tldr tmux bat zsh cmake ninja-build gcc g++ gnome-tweaks telegram discord
 flatpak install flathub com.mattjakeman.ExtensionManager
+sudo snap install clion --classic
+sudo snap install pycharm-professional --classic
 
 # Git
 # Based on https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
