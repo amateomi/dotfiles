@@ -20,10 +20,15 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 sudo dnf install snapd
 sudo ln -s /var/lib/snapd/snap /snap
 
+# Nvidia drivers
+sudo dnf install akmod-nvidia
+sudo systemctl enable nvidia-hibernate.service nvidia-suspend.service nvidia-resume.service
+sudo sed -i 's/nvidia-drm.modeset=1/nvidia-drm.modeset=0/' /etc/default/grub
+sudo grub2-mkconfig -o /etc/grub2.cfg
+
 # Install packages
 sudo dnf install wl-clipboard neofetch htop alacritty zsh cmake ninja-build gcc g++ gnome-tweaks telegram discord
 flatpak install flathub com.mattjakeman.ExtensionManager
-sudo snap install clion --classic
 
 # Git
 # Based on https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
