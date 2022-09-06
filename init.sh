@@ -16,10 +16,6 @@ sudo dnf upgrade --refresh
 # Enable Flatpak
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-# Enable Snap
-sudo dnf install snapd
-sudo ln -s /var/lib/snapd/snap /snap
-
 # Nvidia drivers
 sudo dnf install akmod-nvidia
 sudo systemctl enable nvidia-hibernate.service nvidia-suspend.service nvidia-resume.service
@@ -37,9 +33,6 @@ sudo dracut --regenerate-all --force
 # Install packages
 sudo dnf install wl-clipboard neofetch htop alacritty tldr tmux bat zsh cmake ninja-build gcc g++ gnome-tweaks telegram discord
 flatpak install flathub com.mattjakeman.ExtensionManager
-sudo snap install clion --classic
-sudo snap install pycharm-professional --classic
-snap install spotify
 
 # Git
 # Based on https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
