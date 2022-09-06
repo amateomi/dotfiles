@@ -39,6 +39,7 @@ sudo dnf install wl-clipboard neofetch htop alacritty tldr tmux bat zsh cmake ni
 flatpak install flathub com.mattjakeman.ExtensionManager
 sudo snap install clion --classic
 sudo snap install pycharm-professional --classic
+snap install spotify
 
 # Git
 # Based on https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
