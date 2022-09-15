@@ -53,6 +53,9 @@ git config --global commit.gpgsign true
 echo_color "Add GPG public key to GitHub (it's already in the clipboard)"
 read -p "$*"  # Pause
 
+# Fix missing console font
+echo "FONT=tcvn8x16" | sudo tee -a /etc/vconsole.conf
+
 # Fix Varmilo keyboard F keys
 echo "options hid_apple fnmode=2" | sudo tee /etc/modprobe.d/hid_apple.conf
 sudo mkinitcpio -P
