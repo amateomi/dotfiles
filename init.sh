@@ -15,6 +15,7 @@ sudo pacman -Syu wl-clipboard neofetch htop alacritty tldr tmux bat zsh cmake ni
 
 # Git
 # Based on https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
+
 read -rp "Enter your full name for Git: " git_name
 git config --global user.name "$git_name"
 read -rp "Enter your Git mail: " git_mail
@@ -37,10 +38,10 @@ read -p "$*"  # Pause
 
 # Generate GPG key for GitHub
 # Based on https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key
-gpg --full-generate-key
-gpg_id="$(gpg --list-secret-keys --keyid-format=long | grep -o "ed25519/.[A-Z0-9]* " | cut -d "/" -f2)"
+gpg --default-new-key-algo rsa4096 --gen-key
+gpg_id="$(gpg --list-secret-keys --keyid-format=long | grep -o "rsa4096/.[A-Z0-9]* " | cut -d "/" -f2)"
 gpg --armor --export "$gpg_id" | wl-copy
-echo "\033[32mAdd GPG public key to GitHub (it's already in the clipboard)\033[39m"
+echo -e "\033[32mAdd GPG public key to GitHub (it's already in the clipboard)\033[39m"
 read -p "$*"  # Pause
 git config --global user.signingkey "$gpg_id"
 git config --global commit.gpgsign true
