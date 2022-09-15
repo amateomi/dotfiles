@@ -5,7 +5,15 @@ function echo_color {
         echo -e "\033[32m${1}\033[39m"
 }
 
+# Update system
+sudo pacman -Syu
+
 # Install yay
+
+# Install missing firmware
+# Based on https://wiki.archlinux.org/title/Mkinitcpio#Possibly_missing_firmware_for_module_XXXX
+sudo pacman -S linux-firmware linux-firmware-qlogic
+yay -S upd72020x-fw aic94xx-firmware wd719x-firmware
 
 # Install packages
 sudo pacman -Syu wl-clipboard neofetch htop alacritty tldr tmux bat zsh cmake ninja gcc gnome-tweaks discord
