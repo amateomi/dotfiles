@@ -16,7 +16,10 @@ sudo pacman -S linux-firmware linux-firmware-qlogic
 yay -S upd72020x-fw aic94xx-firmware wd719x-firmware
 
 # Install packages
-sudo pacman -Syu wl-clipboard neofetch htop alacritty tldr tmux bat zsh cmake ninja gcc gnome-tweaks discord
+sudo pacman -Syu wl-clipboard neofetch htop tldr tmux bat zsh libdbusmenu-glib \
+                 gcc make ninja cmake gdb doxygen gtest cython ipython
+                 alacritty gnome-tweaks discord
+yay -S intellij-idea-ultimate-edition-jre intellij-idea-ultimate-edition pycharm-professional clion-jre clion
 
 # Git
 # Based on https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
