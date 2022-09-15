@@ -69,6 +69,7 @@ sudo mkinitcpio -P
 
 # Settings
 gsettings set org.gnome.desktop.sound event-sounds false
+gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('xkb', 'ru')]"
 
 # GNOME Tweaks
 
