@@ -50,6 +50,7 @@ read -p "$*"  # Pause
 # Based on https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key
 gpg --default-new-key-algo rsa4096 --gen-key
 gpg_id="$(gpg --list-secret-keys --keyid-format=long | grep -o "rsa4096/.[A-Z0-9]* " | cut -d "/" -f2)"
+gpg_id="${gpg_id::-1}"
 gpg --armor --export "$gpg_id" | wl-copy
 git config --global user.signingkey "$gpg_id"
 git config --global commit.gpgsign true
