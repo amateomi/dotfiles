@@ -1,38 +1,17 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Speed up dnf (Fedora only)
-sudo echo -e "fastestmirror=True\nmax_parallel_downloads=10\ndefaultyes=True\nkeepcache=True" | sudo tee -a /etc/dnf/dnf.conf
-sudo dnf autoremove
-sudo dnf clean all
-
-# Enable RPM Fusion
-sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
-                 https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-
-# Update System
-sudo dnf upgrade --refresh
-
-# Enable Flatpak
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
-# Nvidia drivers
-sudo dnf install akmod-nvidia
-sudo systemctl enable nvidia-hibernate.service nvidia-suspend.service nvidia-resume.service
-sudo sed -i 's/nvidia-drm.modeset=1/nvidia-drm.modeset=0/' /etc/default/grub
-sudo grub2-mkconfig -o /etc/grub2.cfg
-sudo sed -i 's@RUN+="/usr/libexec/gdm-runtime-config set daemon WaylandEnable false"@#&@' /lib/udev/rules.d/61-gdm.rules
+# Install yay
 
 # Turn off beap sound
-dconf write /org/gnome/desktop/sound/event-sounds "false"
+gsettings set org.gnome.desktop.sound event-sounds false
 
 # Fix Varmilo keyboard F keys
-sudo echo "options hid_apple fnmode=2" > /etc/modprobe.d/hid_apple.conf
-sudo dracut --regenerate-all --force
+echo "options hid_apple fnmode=2" | sudo tee /etc/modprobe.d/hid_apple.conf
+sudo mkinitcpio -P
 
 # Install packages
-sudo dnf install wl-clipboard neofetch htop alacritty tldr tmux bat zsh cmake ninja-build gcc g++ gnome-tweaks telegram discord
-flatpak install flathub com.mattjakeman.ExtensionManager
+sudo pacman -Syu wl-clipboard neofetch htop alacritty tldr tmux bat zsh cmake ninja gcc gnome-tweaks discord
 
 # Git
 # Based on https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
