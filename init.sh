@@ -16,8 +16,8 @@ sudo pacman -S linux-firmware linux-firmware-qlogic
 yay -S upd72020x-fw aic94xx-firmware wd719x-firmware
 
 # Install packages
-sudo pacman -Syu wl-clipboard neofetch htop tldr tmux bat zsh libdbusmenu-glib \
-                 gcc make ninja cmake gdb doxygen gtest cython ipython
+sudo pacman -Syu wl-clipboard neofetch htop tldr tmux bat zsh libdbusmenu-glib ttf-jetbrains-mono \
+                 gcc make ninja cmake gdb doxygen gtest cython ipython \
                  alacritty gnome-tweaks discord
 yay -S intellij-idea-ultimate-edition-jre intellij-idea-ultimate-edition pycharm-professional clion-jre clion
 
