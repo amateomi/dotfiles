@@ -67,6 +67,9 @@ sudo mkinitcpio -P
 # Fix time issue with dualboot
 timedatectl set-local-rtc 1
 
+# Setup nano
+find /usr/share/nano -maxdepth 2 -type f | sed "s/^/include /" > .nanorc
+
 # Zsh
 
 # Alacritty
