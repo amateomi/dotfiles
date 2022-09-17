@@ -76,4 +76,4 @@ gsettings set org.gnome.desktop.sound event-sounds false
 gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('xkb', 'ru')]"
 
 # Extensions
-# Mannualy install Vitals, User Themes, Gnome 4x UI Improvements, Dash to Dock, Clipboard Indicator, Blur my Shell
+# Manually install Vitals, User Themes, Gnome 4x UI Improvements, Dash to Dock, Clipboard Indicator, Blur my Shell
