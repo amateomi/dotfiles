@@ -19,7 +19,7 @@ yay -S upd72020x-fw aic94xx-firmware wd719x-firmware
 sudo pacman -Syu wl-clipboard neofetch htop tldr tmux bat zsh libdbusmenu-glib ttf-jetbrains-mono \
                  gcc make ninja cmake gdb doxygen gtest cython ipython \
                  alacritty gnome-tweaks discord
-yay -S intellij-idea-ultimate-edition-jre intellij-idea-ultimate-edition pycharm-professional clion-jre clion
+yay -S intellij-idea-ultimate-edition-jre intellij-idea-ultimate-edition pycharm-professional clion-jre clion gnome-browser-connector
 
 # Git
 # Based on https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
