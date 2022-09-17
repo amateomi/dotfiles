@@ -64,6 +64,9 @@ echo "FONT=tcvn8x16" | sudo tee -a /etc/vconsole.conf
 echo "options hid_apple fnmode=2" | sudo tee /etc/modprobe.d/hid_apple.conf
 sudo mkinitcpio -P
 
+# Fix time issue with dualboot
+timedatectl set-local-rtc 1
+
 # Zsh
 
 # Alacritty
