@@ -18,7 +18,7 @@ yay -S upd72020x-fw aic94xx-firmware wd719x-firmware
 # Install packages
 sudo pacman -Syu wl-clipboard neofetch htop tldr tmux bat zsh libdbusmenu-glib ttf-jetbrains-mono \
                  gcc make ninja cmake gdb doxygen gtest cython ipython \
-                 alacritty gnome-tweaks discord spotify-launcher telegram-desktop
+                 papirus-icon-theme alacritty gnome-tweaks discord spotify-launcher telegram-desktop
 yay -S intellij-idea-ultimate-edition-jre intellij-idea-ultimate-edition pycharm-professional clion-jre clion \
        gnome-browser-connector oh-my-zsh-git
 
@@ -81,6 +81,10 @@ sudo git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/
 # Alacritty
 cp ./.alacritty.yml ~/.alacritty.yml
 sudo sed -i "s/^Exec=alacritty/Exec=env WAYLAND_DISPLAY= alacritty/g" /usr/share/applications/Alacritty.desktop
+
+# Theme
+git clone https://github.com/vinceliuice/Graphite-gtk-theme.git
+./Graphite-gtk-theme/install.sh -s compact -c dark -l --tweaks rimless
 
 # Settings
 gsettings set org.gnome.desktop.sound event-sounds false
