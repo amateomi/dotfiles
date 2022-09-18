@@ -65,8 +65,8 @@ echo "FONT=tcvn8x16" | sudo tee -a /etc/vconsole.conf
 echo "options hid_apple fnmode=2" | sudo tee /etc/modprobe.d/hid_apple.conf
 sudo mkinitcpio -P
 
-# Fix time issue with dualboot
-timedatectl set-local-rtc 1
+# Fix Windows time issue (dualboot)
+# reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation" /v RealTimeIsUniversal /d 1 /t REG_DWORD /f
 
 # Nano
 find /usr/share/nano -maxdepth 2 -type f | sed "s/^/include /" > .nanorc
