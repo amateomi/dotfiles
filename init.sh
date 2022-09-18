@@ -73,7 +73,10 @@ find /usr/share/nano -maxdepth 2 -type f | sed "s/^/include /" > .nanorc
 
 # Zsh
 chsh -s /usr/bin/zsh
-cp /usr/share/oh-my-zsh/zshrc ~/.zshrc
+cp ./.zshrc ~/.zshrc
+curl https://raw.githubusercontent.com/Daivasmara/daivasmara.zsh-theme/master/daivasmara.zsh-theme | sudo tee $ZSH_CUSTOM/themes/daivasmara.zsh-theme
+sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+sudo git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 # Alacritty
 
