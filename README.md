@@ -1,4 +1,2 @@
-# Achinomu
+# Blinux
 My Arch Linux GNOME setup
-zxc
-
