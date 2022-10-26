@@ -69,7 +69,7 @@ sudo mkinitcpio -P
 # reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation" /v RealTimeIsUniversal /d 1 /t REG_DWORD /f
 
 # Nano
-find /usr/share/nano -maxdepth 2 -type f | sed "s/^/include /" > .nanorc
+find /usr/share/nano -maxdepth 2 -type f | sed "s/^/include /" > ~/.nanorc
 
 # Zsh
 chsh -s /usr/bin/zsh
