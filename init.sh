@@ -5,22 +5,24 @@ function echo_color {
         echo -e "\033[32m${1}\033[39m"
 }
 
+# Speed up dnf
+sudo echo -e "fastestmirror=True\nmax_parallel_downloads=10\ndefaultyes=True\nkeepcache=True" | sudo tee -a /etc/dnf/dnf.conf
+
 # Update system
-sudo pacman -Syu
+sudo dnf upgrade --refresh
 
-# Install yay
+# Install dnf packages
+sudo dnf install util-linux-user wl-clipboard neofetch htop tldr tmux bat zsh alacritty \
+                 g++ ninja-build cmake doxygen cython ipython \
+                 jetbrains-mono-fonts gnome-tweaks gnome-extensions-app
+sudo dnf autoremove
+sudo dnf clean all
 
-# Install missing firmware
-# Based on https://wiki.archlinux.org/title/Mkinitcpio#Possibly_missing_firmware_for_module_XXXX
-sudo pacman -S linux-firmware linux-firmware-qlogic
-yay -S upd72020x-fw aic94xx-firmware wd719x-firmware
+# Enable flatpak
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-# Install packages
-sudo pacman -Syu wl-clipboard neofetch htop tldr tmux bat zsh libdbusmenu-glib ttf-jetbrains-mono \
-                 gcc make ninja cmake gdb doxygen gtest cython ipython \
-                 papirus-icon-theme alacritty gnome-tweaks discord spotify-launcher telegram-desktop
-yay -S intellij-idea-ultimate-edition-jre intellij-idea-ultimate-edition pycharm-professional clion-jre clion \
-       gnome-browser-connector oh-my-zsh-git
+# Install flatpak apps
+sudo flatpak install flathub com.spotify.Client com.discordapp.Discord org.telegram.desktop
 
 # Git
 # Based on https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
@@ -28,7 +30,7 @@ echo_color "Enter your full name for Git:"
 read -r git_name
 git config --global user.name "$git_name"
 echo_color "Enter your Git mail:"
-read -rp git_mail
+read -r git_mail
 git config --global user.email "$git_mail"
 git config --global core.editor nano
 git config --global init.defaultBranch master
@@ -58,23 +60,13 @@ git config --global commit.gpgsign true
 echo_color "Add GPG public key to GitHub (it's already in the clipboard)"
 read -p "$*"  # Pause
 
-# Fix missing console font
-echo "FONT=tcvn8x16" | sudo tee -a /etc/vconsole.conf
-
-# Fix Varmilo keyboard F keys
-echo "options hid_apple fnmode=2" | sudo tee /etc/modprobe.d/hid_apple.conf
-sudo mkinitcpio -P
-
-# Fix Windows time issue (dualboot)
-# reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation" /v RealTimeIsUniversal /d 1 /t REG_DWORD /f
-
 # Nano
 find /usr/share/nano -maxdepth 2 -type f | sed "s/^/include /" > ~/.nanorc
 
 # Zsh
-chsh -s /usr/bin/zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 cp ./.zshrc ~/.zshrc
-curl https://raw.githubusercontent.com/Daivasmara/daivasmara.zsh-theme/master/daivasmara.zsh-theme | sudo tee $ZSH_CUSTOM/themes/daivasmara.zsh-theme
+sudo curl https://raw.githubusercontent.com/Daivasmara/daivasmara.zsh-theme/master/daivasmara.zsh-theme | sudo tee $ZSH_CUSTOM/themes/daivasmara.zsh-theme
 sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 sudo git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
@@ -82,13 +74,16 @@ sudo git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/
 cp ./.alacritty.yml ~/.alacritty.yml
 sudo sed -i "s/^Exec=alacritty/Exec=env WAYLAND_DISPLAY= alacritty/g" /usr/share/applications/Alacritty.desktop
 
-# Theme
-git clone https://github.com/vinceliuice/Graphite-gtk-theme.git
-./Graphite-gtk-theme/install.sh -s compact -c dark -l --tweaks rimless
-
 # Settings
 gsettings set org.gnome.desktop.sound event-sounds false
-gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('xkb', 'ru')]"
 
 # Extensions
-# Manually install Vitals, User Themes, Gnome 4x UI Improvements, Dash to Dock, Clipboard Indicator, Blur my Shell
+# Manually install Vitals, Gnome 4x UI Improvements, Dash to Dock, Clipboard Indicator, Blur my Shell
+
+# Fix Varmilo keyboard F keys
+echo "options hid_apple fnmode=2" | sudo tee /etc/modprobe.d/hid_apple.conf
+sudo dracut --force
+
+# Fix Windows time issue (dualboot)
+# reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation" /v RealTimeIsUniversal /d 1 /t REG_DWORD /f
+
