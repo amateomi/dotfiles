@@ -19,7 +19,7 @@ function install_nvidia() {
 
 function install_packages() {
   sudo dnf install util-linux-user neofetch htop tldr tmux bat zsh alacritty \
-    g++ cmake doxygen cython ipython \
+    g++ cmake doxygen cython ipython sqlite \
     jetbrains-mono-fonts gnome-tweaks gnome-extensions-app \
     discord telegram
 
