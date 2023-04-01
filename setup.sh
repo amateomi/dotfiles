@@ -111,6 +111,10 @@ function fix_varmilo() {
   sudo dracut --force
 }
 
+function fix_dualboot_time() {
+  timedatectl set-local-rtc 0
+}
+
 while true; do
   clear
   echo -e "Choose options from top to bottom, DO NOT call the same option twice\n"
@@ -123,7 +127,9 @@ while true; do
   echo "7) - Set my alacritty setup and fix Wayland issue"
   echo "8) - Setup GNOME"
   echo "9) - Fix Varmilo keyboard F keys (Will cause system reboot)"
+  echo "10) - Fix time issue on Windows (Dualboot problem)"
   echo "0) - Quit"
+  echo -n ">"
 
   read -r option
   case $option in
@@ -165,6 +171,10 @@ while true; do
   9)
     fix_varmilo
     reboot
+    ;;
+
+  10)
+    fix_dualboot_time
     ;;
 
   0)
