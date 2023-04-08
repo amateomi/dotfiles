@@ -2,6 +2,10 @@
 
 set -euo pipefail
 
+function echo_color {
+  echo -e "\033[32m${1}\033[39m"
+}
+
 function dnf_update() {
   sudo echo -e "fastestmirror=True\nmax_parallel_downloads=10\ndefaultyes=True\nkeepcache=True" | sudo tee -a /etc/dnf/dnf.conf
 
