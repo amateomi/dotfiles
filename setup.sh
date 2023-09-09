@@ -91,10 +91,9 @@ function setup_nano() {
 
 function setup_zsh() {
   cp ./.zshrc ~/.zshrc
-  sudo curl https://raw.githubusercontent.com/Daivasmara/daivasmara.zsh-theme/master/daivasmara.zsh-theme | sudo tee "$ZSH_CUSTOM"/themes/daivasmara.zsh-theme
+  curl https://raw.githubusercontent.com/Daivasmara/daivasmara.zsh-theme/master/daivasmara.zsh-theme | sudo tee "$ZSH_CUSTOM"/themes/daivasmara.zsh-theme
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
   git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-
 }
 
 function setup_alacritty() {
