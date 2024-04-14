@@ -18,6 +18,7 @@
         # Development
         vscode
         alacritty
+        texliveFull
 
         # Utility
         loupe
