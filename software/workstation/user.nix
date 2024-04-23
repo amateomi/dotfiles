@@ -24,6 +24,8 @@
         loupe
         clapper
         drawio
+        gimp
+        inkscape
 
         # Communication
         firefox
